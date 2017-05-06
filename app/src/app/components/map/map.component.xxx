@@ -1,0 +1,30 @@
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By }           from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
+
+import { MapComponent } from './map.component';
+import { MapApiService } from './../../services/mapapi.service';
+
+describe('Component: MapComponent', function () {
+  let el: HTMLElement;
+  let de: DebugElement;
+  let comp: MapComponent;
+  let fixture: ComponentFixture<MapComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ MapComponent ],
+      providers:    [ {provide: 'mapapiService', useClass: MapApiService} ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(MapComponent);
+    comp = fixture.componentInstance;
+  });
+
+  it('should create component', () => {
+    expect(comp).toBeDefined();
+  });
+});

@@ -1,7 +1,9 @@
 {
-    "name": "GOOGLE MAP TEST",
-    "description": "GOOGLE MAP TEST",
+    "name": "google-map-test",
+    "description": "google map test",
+    "version": "1.0.0",
     "keywords": ["laravel", "google-map", "php"],
+    "author": "John Paul Onte <jnpl.onte@gmail.com>",
     "license": "MIT",
     "type": "project",
     "require": {
