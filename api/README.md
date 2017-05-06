@@ -19,8 +19,8 @@
 ## How to Use
 #### add map information
 - **[POST]** `/route`
-- required parameters : [["ROUTE_START_LATITUDE", "ROUTE_START_LONGITUDE"],	["DROPOFF_LATITUDE_#1", "DROPOFF_LONGITUDE_#1"]]
-- sample parameters : param : [["22.3061093","114.1716293"],["22.3013212","114.1704476"],["22.304309","114.171990"]]
+- required parameters : `[["ROUTE_START_LATITUDE", "ROUTE_START_LONGITUDE"],	["DROPOFF_LATITUDE_#1", "DROPOFF_LONGITUDE_#1"]]`
+- sample parameters : `param : [["22.3061093","114.1716293"],["22.3013212","114.1704476"],["22.304309","114.171990"]]`
 
 
 #### get map information
