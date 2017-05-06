@@ -1,4 +1,5 @@
 # MAP APPLICATION
 
-* BackEnd: [API](https://github.com/jnplonte/map/tree/master/api)
-* FrontEnd: [APP](https://github.com/jnplonte/map/tree/master/app)
+
+* BackEnd: [https://github.com/jnplonte/map/tree/master/api](https://github.com/jnplonte/map/blob/master/api/README.md)
+* FrontEnd: [https://github.com/jnplonte/map/tree/master/app](https://github.com/jnplonte/map/blob/master/app/README.md)
