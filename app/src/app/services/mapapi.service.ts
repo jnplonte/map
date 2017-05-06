@@ -18,20 +18,32 @@ export class MapApiService {
   }
 
   private extractData(res: Response) {
-    let body = res.json();
-    return body || { };
+    res = res || null;
+
+    if(res){
+      let body = res.json();
+      return body || {};
+    }else{
+      return {};
+    }
   }
 
   private handleError(error: Response | any) {
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
+    error = error || null;
+    if(error){
+      let errMsg: string;
+      if (error instanceof Response) {
+        const body = error.json() || '';
+        const err = body.error || JSON.stringify(body);
+        errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+      } else {
+        errMsg = error.message ? error.message : error.toString();
+      }
+      console.error(errMsg);
+      return Observable.throw(errMsg);
+    }else{
+      console.error('Fatal Error');
+      return Observable.throw('Fatal Error');
     }
-    console.error(errMsg);
-    return Observable.throw(errMsg);
   }
 }

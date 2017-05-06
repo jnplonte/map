@@ -1,6 +1,8 @@
 import { inject, TestBed } from '@angular/core/testing';
 import {By} from "@angular/platform-browser";
 
+import { HttpModule, JsonpModule } from '@angular/http';
+
 import { MapApiService } from './../services/mapapi.service';
 
 describe('Service: MapApiService', function () {
@@ -8,6 +10,7 @@ describe('Service: MapApiService', function () {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpModule, JsonpModule],
       providers: [ MapApiService ]
     });
   });

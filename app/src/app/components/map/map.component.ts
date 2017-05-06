@@ -11,6 +11,7 @@ declare var google: any;
 
 export class MapComponent {
   mapapiService;
+
   token;
   totalDistance;
   timeDistance;
@@ -20,11 +21,14 @@ export class MapComponent {
   }
 
   ngOnInit() {
-    this.token = this.route.snapshot.params['token'];
-    this.getDirection();
+      this.token = this.route.snapshot.params['token'] || null;
+      this.getDirection();
   }
 
   getDirection() {
+    if(!this.token){
+      this.initDefault();
+    }
     this.mapapiService.getDirection(this.token).subscribe(
       response => {
          if(response.status == 'success'){
