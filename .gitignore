@@ -1,0 +1,8 @@
+/api/node_modules
+/api/public/storage
+/api/storage/*.key
+/api/vendor
+/api/.idea
+/api/Homestead.json
+/api/Homestead.yaml
+/api/.env
