@@ -25,7 +25,7 @@
 
 #### get map information
 - **[GET]** `/route/{token}`
-- sample token : 832219bfa054d5a9257dfc1470dced6d
+- sample token : `832219bfa054d5a9257dfc1470dced6d`
 
 ## Testing
 * install phpunit by following this instruction [https://phpunit.de/getting-started.html](https://phpunit.de/getting-started.html)
