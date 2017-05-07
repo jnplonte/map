@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 
 import { MapComponent } from './map.component';
 import { MapApiService } from './../../services/mapapi.service';
+import { HelperService } from './../../services/helper.service';
 
 describe('Component: MapComponent', function () {
   let el: HTMLElement;
@@ -22,6 +23,7 @@ describe('Component: MapComponent', function () {
       imports: [ RouterTestingModule, HttpModule, JsonpModule ],
       providers:[
                   {provide: 'mapapiService', useClass: MapApiService},
+                  {provide: 'helperService', useClass: HelperService},
                   {provide: ActivatedRoute, useValue: { params: Observable.of({ token: '58a5d22e877831ccd4c9053ff0e87956' })}}
                 ]
     })

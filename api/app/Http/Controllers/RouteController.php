@@ -35,14 +35,19 @@ class RouteController extends Controller
       $distanceTotal = 0;
       $distanceTime = 0;
 
+      $addressFromStart = $startAddress['data']->address;
+
       // $distanceInfo = [];
       $endIDs = explode(",", $mapDistanceData['data']->end_ids);
       foreach ($endIDs as $key => $value) {
         $endAddress = $mapGeoCode->getGeoAddress($value);
         if(!empty($endAddress['data']->address)){
+          // $distanceInfo[] = $this->getDistanceMatrix($addressFromStart, $endAddress['data']->address);
+          // $addressFromStart = $endAddress['data']->address;
+
           $distancePath[] = [$endAddress['data']->lat, $endAddress['data']->lng];
-          // $distanceInfo[] = $this->getDistanceMatrix($startAddress['data']->address, $endAddress['data']->address);
-          $distanceInfo = $this->getDistanceMatrix($startAddress['data']->address, $endAddress['data']->address);
+          $distanceInfo = $this->getDistanceMatrix($addressFromStart, $endAddress['data']->address);
+          $addressFromStart = $endAddress['data']->address;
           if(empty($distanceInfo)){
             return response()->json(array('status' => 'failure', 'error' => 'no end address found'));
           }
@@ -50,7 +55,7 @@ class RouteController extends Controller
           $distanceTime = $distanceTime + (int) $distanceInfo->rows[0]->elements[0]->duration->value;
         }
       }
-      // dd($distanceTime);
+      // dd($distanceInfo);
       return response()->json(array('status' => 'success', 'path' => $distancePath, 'total_distance' => $distanceTotal, 'total_time' => $distanceTime));
     }
 

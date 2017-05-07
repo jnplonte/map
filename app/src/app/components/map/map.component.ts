@@ -1,6 +1,8 @@
 import { Component, Inject} from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
+import * as _ from 'underscore';
+
 declare var google: any;
 
 @Component({
@@ -11,13 +13,15 @@ declare var google: any;
 
 export class MapComponent {
   mapapiService;
+  helperService;
 
   token;
   totalDistance;
   timeDistance;
 
-  constructor(private route: ActivatedRoute, private router: Router, @Inject('mapapiService') mapapiService){
+  constructor(private route: ActivatedRoute, private router: Router, @Inject('mapapiService') mapapiService, @Inject('helperService') helperService){
     this.mapapiService = mapapiService;
+    this.helperService = helperService;
   }
 
   ngOnInit() {
@@ -29,11 +33,12 @@ export class MapComponent {
     if(!this.token){
       this.initDefault();
     }
+
     this.mapapiService.getDirection(this.token).subscribe(
       response => {
          if(response.status == 'success'){
-           this.totalDistance = response.total_distance;
-           this.timeDistance = response.total_time;
+           this.totalDistance = this.helperService.meterToMiles(response.total_distance);
+           this.timeDistance = this.helperService.secondsToHms(response.total_time);
 
            this.initMap(response.path);
          }else{
@@ -59,10 +64,23 @@ export class MapComponent {
   }
 
   initMap(path) {
-    let pointA = new google.maps.LatLng(51.7519, -1.2578),
-        pointB = new google.maps.LatLng(52.8429, -0.2578),
-        pointC = new google.maps.LatLng(52.8429, -0.1350),
-        wayPoints = [];
+    let wayPoints = [], pathCount = (path.length - 1), pointA, pointB;
+
+    _.each(path, function(row, i) {
+        if(i == 0){
+          // first array start
+          pointA = new google.maps.LatLng(row[0], row[1]);
+        }else if(i == pathCount){
+          //last array destination
+          pointB = new google.maps.LatLng(row[0], row[1])
+        }else{
+          //waypoints
+          wayPoints.push({
+                          location: new google.maps.LatLng(row[0], row[1]),
+                          stopover: true
+                        });
+        }
+    });
 
     let myOptions = {
         zoom: 16,
@@ -75,10 +93,6 @@ export class MapComponent {
         map: map
       });
 
-    wayPoints.push({
-                    location: pointC,
-                    stopover: true
-                  });
     this.calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB, wayPoints);
   }
 

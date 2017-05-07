@@ -9,6 +9,7 @@ import { MapComponent } from './components/map/map.component';
 import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 import { MapApiService } from './services/mapapi.service';
+import { HelperService } from './services/helper.service';
 
 const appRoutes: Routes = [
   { path: '',
@@ -28,10 +29,10 @@ const appRoutes: Routes = [
   imports:      [ BrowserModule,
                   HttpModule,
                   JsonpModule,
-                  RouterModule.forRoot(appRoutes)
-                ],
+                  RouterModule.forRoot(appRoutes) ],
   declarations: [ AppComponent, MapComponent, PageNotFoundComponent ],
-  providers:    [ {provide: 'mapapiService', useClass: MapApiService} ],
+  providers:    [ {provide: 'mapapiService', useClass: MapApiService},
+                  {provide: 'helperService', useClass: HelperService} ],
   bootstrap:    [ AppComponent ]
 })
 
