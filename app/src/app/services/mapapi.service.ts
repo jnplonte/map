@@ -7,8 +7,8 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class MapApiService {
-  private MapApiUrl = 'http://test_map.local/route/';  // hardcoded point to my local api env
-  // private MapApiUrl = 'http://localhost/route/';  // hardcoded point to my local api env
+  // private MapApiUrl = 'http://test_map.local/route/';  // hardcoded point to my local api env
+  private MapApiUrl = 'http://localhost/route/';  // hardcoded point to my local api env
 
   constructor (private http: Http){
 
