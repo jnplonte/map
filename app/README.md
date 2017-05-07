@@ -9,11 +9,12 @@
 
 
 ## Installation
-* install npm dependencies by running `npm install` on {root}/app
+- install npm dependencies by running `npm install` on {root}/app
 
 
 ## How to Use
 - go to {root}/app and run `npm start` it will listen to default http://localhost:8181
+- sample URL: `http://localhost:8181/route/861e8535ce35755bee1d66d53d2a86cd`
 
 
 ## Testing
