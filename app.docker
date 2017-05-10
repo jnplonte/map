@@ -1,0 +1,2 @@
+#comming from https://hub.docker.com/r/jnplonte/local-setup/
+FROM jnplonte/local-setup

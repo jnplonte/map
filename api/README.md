@@ -12,7 +12,7 @@
 ## Installation
 * change permission of {root}\api\bootstrap and {root}\api\storage by running `chmod 777 -R bootstrap storage`
 * install dependencies by running `composer install`
-* rename `.env-sample` to `.env` and change db configurations
+* rename `.env-sample` to `.env` and change db configurations based on docker ip or local ip
 * get database and mock data by running `php artisan migrate:refresh --seed`
 
 
